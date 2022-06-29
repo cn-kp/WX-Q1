@@ -1,17 +1,18 @@
-require('dotenv').config()
+
 
 const express = require('express')
 const app = express()
-const mongoose = require('mongoose')
 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true })
-const db = mongoose.connection
-db.on('error', (error) => console.error(error))
-db.once('open', () => console.log('Connected to Database'))
 
 app.use(express.json())
 
-const userRouter = require('./routes/api')
-app.use('/api', userRouter)
+const UserRouter = require('./routes/user')
+app.use("/api/answers/user",UserRouter)
 
-app.listen(3001, () => console.log('listening on http://localhost:3001'))
+const sortRouter = require('./routes/sort')
+app.use("/sort", sortRouter)
+
+const trolleyCalculator = require('./routes/trolleyCalculator')
+app.use("/trolleyTotal",trolleyCalculator)
+
+app.listen(5001, () => console.log('listening on http://localhost:5001'))
