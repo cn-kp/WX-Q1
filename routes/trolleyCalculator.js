@@ -1,37 +1,38 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios").default;
+require("dotenv").config
 
 const RequestURL =
-  "http://dev-wooliesx-recruitment.azurewebsites.net/api/resource/trolleyCalculator?token=234183a4-112c-4087-81f9-767f0060e59c";
+  `http://dev-wooliesx-recruitment.azurewebsites.net/api/resource/trolleyCalculator?token=${process.env.TOKEN}`;
 
 router.get("/", async (req, res) => {
   try {
     const exampleValue = {
-      products: [
+      "products": [
         {
-          name: "string",
-          price: 120,
-        },
+          "name": "string",
+          "price": 0
+        }
       ],
-      specials: [
+      "specials": [
         {
-          quantities: [
+          "quantities": [
             {
-              name: "string",
-              quantity: 2,
-            },
+              "name": "string",
+              "quantity": 0
+            }
           ],
-          total: 2,
-        },
+          "total": 0
+        }
       ],
-      quantities: [
+      "quantities": [
         {
-          name: "string",
-          quantity: 0,
-        },
-      ],
-    };
+          "name": "string",
+          "quantity": 0
+        }
+      ]
+    }
     const response = await axios.post(RequestURL, exampleValue);
     res.json(response);
     // const response = await axios({
@@ -40,7 +41,8 @@ router.get("/", async (req, res) => {
     //   data: exampleValue,
     // });
     // res.json(response);
-  } catch {
+  } catch (err){
+    console.log(err)
     res.status(400).json;
   }
 });

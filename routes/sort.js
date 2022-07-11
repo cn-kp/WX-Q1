@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const axios = require("axios").default;
+require('dotenv').config()
 const requestURL =
-  "http://dev-wooliesx-recruitment.azurewebsites.net/api/resource/products?token=234183a4-112c-4087-81f9-767f0060e59c";
+  `http://dev-wooliesx-recruitment.azurewebsites.net/api/resource/products?token=${process.env.TOKEN}`;
 const requestURL2 =
-  "http://dev-wooliesx-recruitment.azurewebsites.net/api/resource/shopperHistory?token=234183a4-112c-4087-81f9-767f0060e59c";
+  `http://dev-wooliesx-recruitment.azurewebsites.net/api/resource/shopperHistory?token=${process.env.TOKEN}`;
 router.post("/", async (req, res) => {
   try {
     const response = await axios.get(requestURL);

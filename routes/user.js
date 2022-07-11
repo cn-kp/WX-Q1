@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router();
+require('dotenv').config()
 
 // get for exercise 1
+
 router.get('/', async (req, res) => {
     try{
-        res.json({name: "test", token : "1234-455662-22233333-3333"});
+        res.json({name: process.env.NAME, token : process.env.TOKEN});
     } catch {
         res.status(400).json
     }
