@@ -33,7 +33,7 @@ router.get("/", async (req, res) => {
         }
       ]
     }
-    const response = await axios.post(RequestURL, exampleValue);
+    const response = await (await axios.post(RequestURL, exampleValue)).data;
     res.json(response);
     // const response = await axios({
     //   method: "post",
